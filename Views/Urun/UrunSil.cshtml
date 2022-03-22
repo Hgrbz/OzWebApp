@@ -1,0 +1,33 @@
+﻿
+@using WebApplication4.Models
+@{
+    ViewBag.Title = "UrunSil";
+}
+@model Urunler
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Ürün Sil
+                </div>
+                <div class="block-controls">
+
+
+                    <a href="/Urun/index"><span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span></a>
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form action="/Urun/UrunSil" method="post">
+                        <input type="hidden" name="UrunID" value="@Model.UrunID" />
+                        <label>@Model.UrunAdi ürünü silinsin mi</label>
+                        <input type="submit" name="name" value="evet" class=" btn btn-danger" />
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

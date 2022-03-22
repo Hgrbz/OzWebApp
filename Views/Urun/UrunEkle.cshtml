@@ -1,0 +1,69 @@
+﻿@using WebApplication4.Models;
+@{
+    ViewBag.Title = "UrunEkle";
+}
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="block">
+                <div class="block-heading">
+                    <div class="main-text h2">
+                        Ürün Ekle
+                    </div>
+                    <div class="block-controls">
+
+
+                        <a href="/Urun/index"><span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span></a>
+                        <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                    </div>
+                </div>
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <form role="form" action="/Urun/UrunEkle" method="post">
+                            <div class="form-group">
+                                <label>Ürün Adı</label>
+                                <input type="text" name="UrunAdi" class="form-control" placeholder="Ürün Adı Girin">
+                            </div>
+                            <div class="form-group">
+                                <label>Fiyat</label>
+                                <input type="number" name="BirimFiyati" class="form-control" placeholder="Fiyat">
+                            </div>
+                            <div class="form-group">
+                                <label>Stok</label>
+                                <input type="number" name="BirimdekiMiktar" class="form-control" placeholder="Stok">
+                            </div>
+                            <div class="form-group">
+                                <label>Kategori</label>
+                                <select id="Kategori" name="KategoriID" class="form-control">
+                                    @foreach (Kategoriler kat in ViewBag.Kategori)
+                                    {
+                                        <option value="@kat.KategoriID">@kat.KategoriAdi</option>
+                                    }
+
+
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Tedarikçi</label>
+                                <select class="form-control" name="TedarikciID">
+                                    @foreach (Tedarikciler ted in ViewBag.tedarikci)
+                                    {
+                                        <option value="@ted.TedarikciID">@ted.SirketAdi</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Check me out
+                                </label>
+                            </div>
+                           <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
