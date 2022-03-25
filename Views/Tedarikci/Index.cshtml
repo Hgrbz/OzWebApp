@@ -13,14 +13,14 @@
             <div class="modal-content" data-border-top="multi">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="small-modal-label">Small Modal Box</h4>
+                    <h4 class="modal-title" id="small-modal-label">Silme izni</h4>
                 </div>
                 <div class="modal-body">
                     <p> </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
-                    <button type="button" class="btn btn-primary">Sil</button>
+                    <button type="button" class="btn btn-danger tedSil">Sil</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -79,7 +79,7 @@
                                         </td>
                                         <td><a href="/tedarikci/guncelle/@tdr.TedarikciID" class="btn btn-primary">Güncelle</a></td>
                                         <td>
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#small-modal" data-dateid="@tdr.TedarikciID">
+                                            <button class="btn btn-danger modalAc" data-toggle="modal" data-target="#small-modal" data-sirketadi="@tdr.SirketAdi" data-id="@tdr.TedarikciID">
                                                 Sil
                                             </button>@*<a href="#" class="btn btn-danger tdrsil" data-tedid="@tdr.TedarikciID">Sil</a>*@
                                         </td> @*burada data- den sonra istediğimiz adı verebilir ve içinde değer saklayabiliriz. burada kategori id yi sakladık.*@
@@ -93,3 +93,42 @@
         </div>
     </div>
 </div>
+@section scripts
+    {
+
+    <script src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".modalAc").click(function () {
+            
+            var sirketAdi = $(this).data("sirketadi");
+            
+            $(".modal-body>p").html(sirketAdi + " tedarikcisi silinsin mi?");
+            var id = $(this).data("id");
+            $(".tedSil").data("id", id);
+        });
+        $(".tedSil").click(function () {
+            var id = $(this).data("id");
+            
+            $.ajax({
+                type: "POST",
+                url: "/Tedarikci/Sil/" + id,
+                success: function (durum)/*buradaki "durum" controller daki try catch i kontrol edecek*/
+                {
+                    if (durum == "ok") {
+                        window.location.replace("/Tedarikci/Index");
+                    }
+                    else
+                    {
+                        $(".modal-body>p").html("Silme işleminde hata oluştu.")
+                    }
+                    
+                        
+                    
+                }
+            });
+        });
+
+        
+    </script>
+
+}

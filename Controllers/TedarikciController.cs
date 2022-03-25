@@ -16,5 +16,22 @@ namespace WebApplication4.Controllers
             List<Tedarikciler> ted=ctx.Tedarikciler.ToList();
             return View(ted);
         }
+        [HttpPost]
+        public string Sil(int id)
+        {
+            Tedarikciler t = ctx.Tedarikciler.FirstOrDefault(x => x.TedarikciID==id);
+            ctx.Tedarikciler.Remove(t);
+            
+            try
+            {
+                ctx.SaveChanges();
+                return "ok";
+            }
+            catch (Exception)
+            {
+
+                return "no";
+            }
+        }
     }
 }
