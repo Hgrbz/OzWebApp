@@ -7,6 +7,7 @@ using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize]
     public class KategoriController : Controller
     {
         NorthwindEntities ctx = new NorthwindEntities();

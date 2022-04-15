@@ -7,6 +7,7 @@ using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize]
     public class UrunController : Controller
     {
         NorthwindEntities con = new NorthwindEntities();

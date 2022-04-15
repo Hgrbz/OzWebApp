@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+}
+@using System.Web.Security @*membershipusercollection, bu kütüphanede bulunduğu için*@
+
+@model MembershipUserCollection
+
+<div class="row">
+    <div class=" col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text">
+
+                </div>
+                <div class="block-controls">
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                    <a href="/Kullanici/Ekle" class="btn btn-success">Yeni Kullanıcı</a>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kullanıcı Adı </th>
+                                <th>Email</th>
+                                <th>Kayıt Tarihi</th>
+                                <th>Son Login</th>
+                                <th>Rolleri</th>
+                                <th>Rol Ata</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*membershipusercollection'dan her seferinde bir membershipuser gelecekmiş*@
+                            @foreach (MembershipUser mu in Model)
+                            {
+                                <tr>
+                                    <td>@mu.UserName</td>
+                                    <td>@mu.Email</td>
+                                    <td>@mu.CreationDate</td>
+                                    <td>@mu.LastLoginDate</td>
+                                    <td><a class="btn btn-primary rolleri" data-uyeadi="@mu.UserName">Rolleri</a></td>
+                                    <td><a class="btn btn-primary" href="/Kullanici/RolAta/@mu.UserName">Rol Ekle</a></td>
+                                    <td><a href="#" class="btn btn-danger uyeSil" data-uyeadi="@mu.UserName">Sil</a></td> @*burada data- den sonra istediğimiz adı verebilir ve içinde değer saklayabiliriz. burada kategori id yi sakladık.*@
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+    {
+
+    <script src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".rolleri").click(function () {
+            var ka = $(this).data("uyeadi");
+            $.ajax({
+                type: "POST",
+                url: "/kullanici/UyeRolleri/",
+                data: {kullaniciAdi:ka},  /*bu ka yı urlye + koyup eklemekle aynı şey*/
+                success: function (veri) {
+                    alert(veri)
+                }
+            });
+        });
+    </script>
+
+}

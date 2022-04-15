@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Üye Ekle";
+}
+@section head
+    {
+    <style>
+        #hata{
+            color:red;
+            font-size: 16px;
+        }
+    </style>
+    }
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Kategori Ekle
+                </div>
+                <div class="block-controls">
+
+
+                    <a href="/Kullanici/index"><span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span></a>
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form role="form" action="/Kullanici/Ekle" method="post">
+                        <div class="form-group">
+                            <label>Kullanıcı Adı</label>
+                            <input type="text" name="KullaniciAdi" class="form-control" placeholder="Kullanıcı Adı Girin">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPAssword1">Parola</label>
+                            <input type="password" name="Parola" class="form-control" min="3"placeholder="Parola">
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <input type="email" name="Email" class="form-control" placeholder="E-mail Girin">
+                        </div>
+                        <div class="form-group">
+                            <label>Gizli Soru</label>
+                            <input type="text" name="GizliSoru" class="form-control" placeholder="Gizli Soru Girin">
+                        </div>
+                        <div class="form-group">
+                            <label>Gizli Cevap</label>
+                            <input type="text" name="GizliCevap" class="form-control" placeholder="Gizli Cevap Girin">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </form>
+                    <span id="hata">@ViewBag.Mesaj</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

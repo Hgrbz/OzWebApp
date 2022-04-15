@@ -70,7 +70,7 @@
                 <div class="container">
                     <div class="navbar-header">
                         <div class="logo">
-                            <a href="/Content//Content/index.html">
+                            <a href="/Content/Content/index.html">
                                 <img class="default-logo" src="/Content/assets/images/required/logo-default.png" width="156" height="44" alt="Logo" />
                                 <img class="small-logo" src="/Content/assets/images/required/logo-small.png" width="48" height="44" alt="Logo" />
                             </a>
@@ -81,6 +81,34 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                        <div class="header-info">
+                            <div class="header-profile">
+                                <!-- NOTE TO READER: Accepts the following class(es) "animate" class -->
+                                <ul class="header-profile-menu">
+                                    <li>
+                                        <a href="#" class="top">
+                                            <span class="header-profile-menu-icon">
+                                                <img class="list-thumbnail" src="~/Content/assets/images/required/profile/profile-pic-4.jpg" width="39" height="39" alt="profile-pic-4" />
+                                            </span>
+                                            <span class="main-menu-text">
+                                                @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(User.Identity.Name) @*User.Identity.Name in sadece ilk harfini büyük yazdırır.*@
+                                                <i class="icon icon-arrow-down-bold-round icon-size-small"></i>
+                                            </span>
+                                        </a>
+                                        <ul>
+                                            
+                                            <li>
+                                                <a href="/Uye/CikisYap/">
+                                                    <span aria-hidden="true" class="icon icon-arrow-curve-right"></span>
+                                                    <span class="main-text">Logout</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,6 +157,24 @@
 
                                 </li>
 
+                                <li class="menu-item-top">
+                                    <a href="/Kullanici/index" class="top">
+                                        <span class="main-menu-icon">
+                                            <span aria-hidden="true" class="icon icon-layers icon-size-medium"></span>
+                                        </span>
+                                        <span class="main-menu-text">Kullanicilar</span>
+                                    </a>
+
+                                </li>
+                                <li class="menu-item-top">
+                                    <a href="/Rol/index" class="top">
+                                        <span class="main-menu-icon">
+                                            <span aria-hidden="true" class="icon icon-layers icon-size-medium"></span>
+                                        </span>
+                                        <span class="main-menu-text">Roller</span>
+                                    </a>
+
+                                </li>
                             </ul>
                         </div>
                     </div>

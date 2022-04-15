@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Rol Ekle";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Rol Ekle
+                </div>
+                <div class="block-controls">
+                    <a href="/Rol/index"><span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span></a>
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form role="form" action="/Rol/Ekle" method="post">
+                        <div class="form-group">
+                            <label>Rol Adı</label>
+                            <input type="text" name="RolAdi" class="form-control" placeholder="Rol Adı Girin">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
