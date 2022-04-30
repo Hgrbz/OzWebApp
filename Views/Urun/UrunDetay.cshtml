@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "UrunDetay";
+}
+
+@using WebApplication4.Models
+@model Urunler
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Ürün Detay
+                </div>
+                <div class="block-controls">
+
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                    
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Ürün Adı</th>
+                                <th>Tedarikçi</th>
+                                <th>Kategori</th>
+                                <th>Birimdeki Miktar</th>
+                                <th>Fiyat</th>
+                                <th>Stok</th>
+                                <th>Yeni Satış</th>
+                                <th>En Az Yeniden Satış Miktarı</th>
+                                <th>Sonlandı</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>@Model.UrunAdi</td>
+                                    @if (@Model.Tedarikciler==null)
+                                    {
+                                        <td></td>
+                                    }
+                                    else
+                                    {
+                                        <td> <span class=" label label-primary">@Model.Tedarikciler.SirketAdi </span></td>
+                                    }
+                                    @if (@Model.Kategoriler==null)
+                                    {
+                                        <td></td>
+                                    }
+                                    else
+                                    {
+                                        <td> <span class="label label-info">@Model.Kategoriler.KategoriAdi</span></td>
+                                    }
+
+                                    <td>@Model.BirimdekiMiktar</td>
+                                    <td>@Model.BirimFiyati</td>
+                                    <td>@Model.BirimdekiMiktar</td>
+                                    <td>@Model.YeniSatis</td>
+                                    <td>@Model.EnAzYenidenSatisMikatari</td>
+                                    @if (@Model.Sonlandi)
+                                    {
+                                        <td> <span class="label label-danger"> stokta yok</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td> <span class="label label-success"> stokta var</span></td>
+                                    }
+                                    <td><a href="/Urun/UrunSil/@Model.UrunID" class="btn btn-danger">Sil</a></td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

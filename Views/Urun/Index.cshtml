@@ -31,46 +31,50 @@
                                 <th>Yeni Satış</th>
                                 <th>En Az Yeniden Satış Miktarı</th>
                                 <th>Sonlandı</th>
+                                <th>Sepete Ekle</th>
+                                <th>Detay</th>
                                 <th>Sil</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (Urunler u in Model)
                             {
-                                <tr>
-                                    <td>@u.UrunAdi</td>
-                                    @if (u.Tedarikciler==null)
-                                    {
-                                        <td></td>
-                                    }
-                                    else
-                                    {
-                                        <td> <span class=" label label-primary">@u.Tedarikciler.SirketAdi </span></td>
-                                    }
-                                    @if (u.Kategoriler==null)
-                                    {
-                                        <td></td>
-                                    }
-                                    else
-                                    {
-                                        <td> <span class="label label-info">@u.Kategoriler.KategoriAdi</span></td>
-                                    }
+                            <tr>
+                                <td>@u.UrunAdi</td>
+                                @if (u.Tedarikciler==null)
+                                {
+                                    <td></td>
+                                }
+                                else
+                                {
+                                    <td> <span class=" label label-primary">@u.Tedarikciler.SirketAdi </span></td>
+                                }
+                                @if (u.Kategoriler==null)
+                                {
+                                    <td></td>
+                                }
+                                else
+                                {
+                                    <td> <span class="label label-info">@u.Kategoriler.KategoriAdi</span></td>
+                                }
 
-                                    <td>@u.BirimdekiMiktar</td>
-                                    <td>@u.BirimFiyati</td>
-                                    <td>@u.BirimdekiMiktar</td>
-                                    <td>@u.YeniSatis</td>
-                                    <td>@u.EnAzYenidenSatisMikatari</td>
-                                    @if (u.Sonlandi)
-                                    {
-                                        <td> <span class="label label-danger"> stokta yok</span></td>
-                                    }
-                                    else
-                                    {
-                                        <td> <span class="label label-success"> stokta var</span></td>
-                                    }
-                                    <td><a href="/Urun/UrunSil/@u.UrunID" class="btn btn-danger">Sil</a></td>
-                                </tr>
+                                <td>@u.BirimdekiMiktar</td>
+                                <td>@u.BirimFiyati</td>
+                                <td>@u.BirimdekiMiktar</td>
+                                <td>@u.YeniSatis</td>
+                                <td>@u.EnAzYenidenSatisMikatari</td>
+                                @if (u.Sonlandi)
+                                {
+                                    <td> <span class="label label-danger"> stokta yok</span></td>
+                                }
+                                else
+                                {
+                                    <td> <span class="label label-success"> stokta var</span></td>
+                                }
+                                <td><a class="btn btn-default sepeteAt" data-id="@u.UrunID" href="#">Sepete Ekle</a></td> @*sepete atma işlemini ajax ile gerçekleştirelim, ürünler sayfası kaybolmasın.*@
+                                <td><a class="btn btn-primary" href="/Urun/UrunDetay?id=@u.UrunID&adi=@u.UrunAdi">Ürün Detay</a></td> @*"/Urun/UrunDetay?id=@u.UrunID" burası query string ile veri gönderme yöntemidir. (state management->client side ->query string method.) &adi=...kısmının çalışması için üründetay view'ına ihtiyaç vardır.'*@
+                                <td><a href="/Urun/UrunSil/@u.UrunID" class="btn btn-danger">Sil</a></td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -79,3 +83,23 @@
         </div>
     </div>
 </div>
+@section scripts
+    {
+    
+        
+        <script>
+            $(".sepeteAt").click(function () {
+                var id = $(this).data("id");
+                $.ajax({
+                    type: "POST",
+                    url: "/Urun/SepeteAt/" + id,
+                    success: function () {
+                        alert("ürün sepete atıldı.");
+                    },
+                    error: function () {
+                        alert("ürün sepete atılırken bir hata oluştu.");
+                    }
+                });
+            });
+        </script>
+    }

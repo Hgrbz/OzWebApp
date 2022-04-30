@@ -1016,6 +1016,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Classes\Kullanici.cs" />
+    <Compile Include="App_Classes\Sepet.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
@@ -1150,6 +1151,11 @@
     <Content Include="Views\Rol\Ekle.cshtml" />
     <Content Include="Views\Kullanici\RolAta.cshtml" />
     <Content Include="Views\Uye\GirisYap.cshtml" />
+    <Content Include="Views\Uye\ParolamiUnuttum.cshtml" />
+    <Content Include="Views\Urun\UrunDetay.cshtml" />
+    <Content Include="Views\Home\CookieAta.cshtml" />
+    <Content Include="Views\Home\CookieOku.cshtml" />
+    <Content Include="Views\Home\Sepetim.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1159,7 +1165,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\deneme\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

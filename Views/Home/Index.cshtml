@@ -3,5 +3,18 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Aktif Kullanıcı</th>
+            <th>Toplam Ziyaretci</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.AktifKullanici</td>
+            <td>@ViewBag.ToplamZiyaretci</td>
+        </tr>
+    </tbody>
+</table>
 

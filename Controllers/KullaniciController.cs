@@ -21,10 +21,12 @@ namespace WebApplication4.Controllers
             MembershipUserCollection users = Membership.GetAllUsers();
             return View(users);
         }
+        [AllowAnonymous]//kullanıcı kendini yeni ekleyeceğinden login şartı olmamalı.
         public ActionResult Ekle()
         {
             return View();
         }
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Ekle(Kullanici k)
 
@@ -86,12 +88,14 @@ namespace WebApplication4.Controllers
 
 
         }
+        [Authorize(Roles = "Admin")]// sadece admin bu action'a erişebilsin(sadece admin rol ekleme sayfasına erişsin.)
         public ActionResult RolAta(string id)//burada string id dememize rağmen aslında ismin kendisi gelmekte. Bunun sebebi bu bir get action'ı olduğu için default config'de ilgili parametre adı olarak id verilmiş olmasıdır. Aynı metodun postunda ise normal isim yazılacak.
         {
             ViewBag.Roller=Roles.GetAllRoles().ToList();
             /*ViewBag.Isim=id;*/ //böyle diyerek boş view gönderilebileceği gibi aşağıdaki gibi de yapılabilir.
-            return View((object)id);
+            return View((object)id);//burada şu yüzden object dedik:normalde default olarak route configde id int olarak tanımlı.ama biz isim göndereceğimiz için (adına id desek de) string olarak parametre verdik. kullanıcı nın index sayfasındaki route'da @mu.UserName string olarak name alıyor. int string çakışmasını önlemek için object tipinde veri gönderdik. )
         }
+        [Authorize(Roles = "Admin")]// sadece admin bu action'a erişebilsin(sadece admin rol ekleme sayfasına erişsin.)
         [HttpPost]
         public ActionResult RolAta(string kullaniciAdi, string rolAdi)//buradaki parametre adları view 'daki ilgili yerlerin name özellikleri ile aynı olmalıdır. yoksa view'dan seçilen değerler post edildiğinde post action'ına gelmez.
         {
